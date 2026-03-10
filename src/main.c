@@ -12,7 +12,7 @@ void cleanUp() {
 
 int main() {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "2D Platformer");
-    Player player = CreatePlayer(100, 100, 50, 50, PLAYER_TEXTURE, 0, 700);
+    Player player = CreatePlayer(100, 100, 50, 50, PLAYER_TEXTURE, 0, 700, 0, 500);
     SetTargetFPS(120);
     while (!WindowShouldClose()) {
         BeginDrawing();

@@ -6,10 +6,10 @@
 #include "player.h"
 #include "consts.h"
 
-Player CreatePlayer(float x, float y, float width, float height, const char *texturePath, int boundaryLeft, int boundaryRight) {
+Player CreatePlayer(float x, float y, float width, float height, const char *texturePath, int boundaryLeft, int boundaryRight, int boundryTop, int boundaryBottom) {
     Player player;
     player.position = (Vector2){x, y};
-    player.velocity = (Vector2){0, 0};
+    //player.velocity = (Vector2){0, 0};
     player.size = (Vector2){width, height};
     player.texturePath = texturePath;
     player.isOnGround = false;
@@ -20,6 +20,8 @@ Player CreatePlayer(float x, float y, float width, float height, const char *tex
     }
     player.boundaryLeft = boundaryLeft;
     player.boundaryRight = boundaryRight;
+    player.boundaryTop = boundryTop;
+    player.boundaryBottom = boundaryBottom;
     return player;
 }
 
@@ -29,6 +31,13 @@ void UpdatePlayer(Player *player) {
     }
     if(player->position.x > player->boundaryRight) {  
         player->position.x = player->boundaryRight;
+    }
+    if(player->position.y < player->boundaryTop) {
+        player->position.y = player->boundaryTop;
+    }
+    if(player->position.y > player->boundaryBottom) {
+        player->position.y = player->boundaryBottom;
+        player->isOnGround = true;
     }
 
     if(player->texturePath == NULL) {
@@ -46,39 +55,38 @@ void MovePlayer(Player *player) {
         DrawText(TextFormat("Delta Time: %f\nDelta Speed: %f", GetFrameTime(), GetFrameTime() * DELTA_MULTIPLIER * SPEED), 10, 50, 20, GREEN);
     }
     if (IsKeyDown(KEY_RIGHT /*IsKeyDown(KEY_D)*/)) {
-        if(IsKeyDown(KEY_RIGHT_ALT)) {
-            player->position.x =  player->position.x + dt * SPEED;
-            printf("delta time applied\n");
-        } else {
-            player->position.x = player->position.x + SPEED;
-        }
+        player->position.x =  player->position.x + dt * SPEED;
+        //printf("delta time applied\n");
+        #if 0 == 1
+        player->position.x = player->position.x + SPEED;
+        #endif
         printf("Player position: (%f, %f)\n", player->position.x, player->position.y);
     }
     if (IsKeyDown(KEY_LEFT) /*IsKeyDown(KEY_A)*/) {
         printf("Player position: (%f, %f)\n", player->position.x, player->position.y);
-        if(IsKeyDown(KEY_RIGHT_ALT)) {
-             player->position.x = player->position.x - dt * SPEED;
-             printf("delta time applied\n");
-        } else {
-            player->position.x = player->position.x - SPEED;
-        }
+        
+        player->position.x = player->position.x - dt * SPEED;
+        //printf("delta time applied\n");
+        #if 0 == 1
+        player->position.x = player->position.x - SPEED;
+        #endif
     }
     if (IsKeyDown(KEY_UP) /*IsKeyDown(KEY_SPACE)*/) {
-        if(IsKeyDown(KEY_RIGHT_ALT)) {
-             player->position.y = player->position.y - dt * SPEED;
-             printf("delta time applied\n");
-        } else {
-            player->position.y = player->position.y - SPEED;
-        }
+        
+        player->position.y = player->position.y - dt * SPEED;
+        //printf("delta time applied\n");
+        #if 0 == 1
+        player->position.y = player->position.y - SPEED;
+        #endif
         printf("Player position: (%f, %f)\n", player->position.x, player->position.y);
     }
     if (IsKeyDown(KEY_DOWN) /*IsKeyDown(KEY_LEFT_SHIFT) | IsKeyDown(KEY_RIGHT_SHIFT)*/) {
-        if(IsKeyDown(KEY_RIGHT_ALT)) {
-             player->position.y = player->position.y + dt * SPEED;
-             printf("delta time applied\n");
-        } else {
-            player->position.y = player->position.y + SPEED;
-        }
+        
+        player->position.y = player->position.y + dt * SPEED;
+        //printf("delta time applied\n");
+        #if 0 == 1
+        player->position.y = player->position.y + SPEED;
+        #endif
         printf("Player position: (%f, %f)\n", player->position.x, player->position.y);
     }
     // Debug stuff KEY_LEFT_ALT is the debug key

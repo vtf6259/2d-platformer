@@ -7,7 +7,7 @@
 #include "globals.h"
 
 void loadLevel() {
-    currentLevel.player = CreatePlayer(0, 0, 50, 50, PLAYER_TEXTURE, 0, 700);
+    currentLevel.player = CreatePlayer(0, 0, 50, 50, PLAYER_TEXTURE, 0, 700, 0, 500);
 
 }
 void addPlatform(int arrPos) {
