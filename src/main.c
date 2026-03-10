@@ -1,7 +1,9 @@
 #include <raylib.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include "consts.h"
 #include "player.h"
+#include "assets.h"
 
 void cleanUp() {
     // Unload textures, free memory, etc.
@@ -10,13 +12,16 @@ void cleanUp() {
 
 int main() {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "2D Platformer");
-    SetTargetFPS(60);
+    Player player = CreatePlayer(100, 100, 50, 50, PLAYER_TEXTURE, 0, 700);
+    SetTargetFPS(120);
     while (!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(BLACK);
         DrawFPS(0, 0); /*SCREEN_WIDTH - 75*/
-
+        UpdatePlayer(&player);
+        MovePlayer(&player);
         EndDrawing();
     }
+    CloseWindow();
     return 0;
 }
