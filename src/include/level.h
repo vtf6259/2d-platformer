@@ -4,6 +4,7 @@
 #include <raylib.h>
 
 void addPlatform(int arrPos);
+void loadLevel(Player *player);
 
 typedef struct {
     Vector2 position;
@@ -18,6 +19,6 @@ typedef struct {
 #include "levelFile.h"
 
 typedef struct {
-    Player player;
+    Player *player;
     LevelFileData levelData;
 } Level;
