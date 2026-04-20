@@ -11,10 +11,6 @@ typedef struct {
     Vector2 size;
 } Platform;
 
-typedef struct {
-    Platform* platforms;
-    int count;
-} platformDynamic;
 
 #include "levelFile.h"
 

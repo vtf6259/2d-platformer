@@ -1,7 +1,9 @@
 #pragma once
 #include "level.h"
+#include <vector>
+using namespace std;
 
 typedef struct {
-    platformDynamic* platformData;
+    vector<Platform> platformData;
     char worldTitle;
 } LevelFileData;
