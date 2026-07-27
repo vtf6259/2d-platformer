@@ -1,0 +1,6 @@
+zig-out
+zig-pkg
+.zig-cache
+
+platformer.app
+local/
